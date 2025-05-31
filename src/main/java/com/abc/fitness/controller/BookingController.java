@@ -30,40 +30,26 @@ public class BookingController {
         }
     }
 
-    @GetMapping("/member/{memberName}")
-    public ResponseEntity<List<Booking>> getBookingsByMember(@PathVariable String memberName) {
-        return ResponseEntity.ok(bookingService.getBookingsByMember(memberName));
-    }
-
-    @GetMapping("/date-range")
-    public ResponseEntity<List<Booking>> getBookingsByDateRange(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-        return ResponseEntity.ok(bookingService.getBookingsByDateRange(startDate, endDate));
-    }
+//    @GetMapping("/member/{memberName}")
+//    public ResponseEntity<List<Booking>> getBookingsByMember(@PathVariable String memberName) {
+//        return ResponseEntity.ok(bookingService.getBookingsByMember(memberName));
+//    }
+//
+//    @GetMapping("/date-range")
+//    public ResponseEntity<List<Booking>> getBookingsByDateRange(
+//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+//        return ResponseEntity.ok(bookingService.getBookingsByDateRange(startDate, endDate));
+//    }
 
     @GetMapping("/search")
     public ResponseEntity<List<Booking>> getBookingsByMemberAndDateRange(
             @RequestParam String memberName,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-        return ResponseEntity.ok(bookingService.getBookingsByMemberAndDateRange(memberName, startDate, endDate));
+
+        List<Booking> bookings = bookingService.searchBookings(memberName, startDate, endDate);
+        return ResponseEntity.ok(bookings);
     }
-    
-	/*
-	 * @GetMapping("/search") public ResponseEntity<List<Booking>> getBookings(
-	 * ResponseEntity<List<Booking>> getBooking() {
-	 * 
-	 * }
-	 * 
-	 * @RequestParam String memberName,
-	 * 
-	 * @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
-	 * startDate,
-	 * 
-	 * @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
-	 * endDate) { return
-	 * ResponseEntity.ok(bookingService.getBookingsByMemberAndDateRange(memberName,
-	 * startDate, endDate)); }
-	 */
+
 }

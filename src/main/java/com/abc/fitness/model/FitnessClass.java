@@ -1,10 +1,19 @@
 package com.abc.fitness.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Entity
 public class FitnessClass {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long fitnessClassId;
     private String name;
     
     @JsonFormat(pattern = "yyyy-MM-dd")

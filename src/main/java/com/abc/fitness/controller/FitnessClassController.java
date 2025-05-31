@@ -1,8 +1,10 @@
 package com.abc.fitness.controller;
 
 import com.abc.fitness.model.FitnessClass;
+import com.abc.fitness.repositories.FitnessClassRepository;
 import com.abc.fitness.service.FitnessClassService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,18 +15,16 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/classes")
 public class FitnessClassController {
-    private final FitnessClassService classService;
 
     @Autowired
-    public FitnessClassController(FitnessClassService classService) {
-        this.classService = classService;
-    }
+    public FitnessClassService fitnessClassService;
+
 
     @PostMapping
     public ResponseEntity<?> createClass(@RequestBody FitnessClass fitnessClass) {
         try {
-            FitnessClass createdClass = classService.createClass(fitnessClass);
-            return ResponseEntity.ok(createdClass);
+            FitnessClass createdClass = fitnessClassService.createClass(fitnessClass);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdClass);
         } catch (IllegalArgumentException e) {
             Map<String, String> error = new HashMap<>();
             error.put("error", e.getMessage());
@@ -38,7 +38,7 @@ public class FitnessClassController {
 
     @GetMapping
     public ResponseEntity<List<FitnessClass>> getAllClasses() {
-        return ResponseEntity.ok(classService.getAllClasses());
+        return ResponseEntity.ok(fitnessClassService.getAllClasses());
     }
 
 	/*

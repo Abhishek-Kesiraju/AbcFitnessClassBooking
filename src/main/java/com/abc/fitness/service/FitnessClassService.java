@@ -2,6 +2,7 @@ package com.abc.fitness.service;
 
 import com.abc.fitness.model.FitnessClass;
 import com.abc.fitness.repositories.FitnessClassRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +11,14 @@ import java.util.List;
 
 @Service
 public class FitnessClassService {
-    private final FitnessClassRepository classRepository;
+    private FitnessClassRepository classRepository;
 
     @Autowired
     public FitnessClassService(FitnessClassRepository classRepository) {
         this.classRepository = classRepository;
     }
 
+    @Transactional
     public FitnessClass createClass(FitnessClass fitnessClass) {
         validateClass(fitnessClass);
         return classRepository.save(fitnessClass);
