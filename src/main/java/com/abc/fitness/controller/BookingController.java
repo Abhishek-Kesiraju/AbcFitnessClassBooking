@@ -1,7 +1,8 @@
 package com.abc.fitness.controller;
 
 import com.abc.fitness.model.Booking;
-import com.abc.fitness.model.ClassEntity;
+import com.abc.fitness.service.BookingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,26 +13,43 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bookings")
 public class BookingController {
+    private final BookingService bookingService;
 
-        @PostMapping
-        public ResponseEntity<?>  bookClass(@RequestBody Booking booking){
-            //Call bookClass Service
+    @Autowired
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
-            return null;
+    @PostMapping
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
+        try {
+            Booking createdBooking = bookingService.createBooking(booking);
+            return ResponseEntity.ok(createdBooking);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
         }
+    }
 
-        @GetMapping("/search")
-        public ResponseEntity<List<Booking>> searchBookings( @RequestParam(required = false)
-                                                                     String member,
-                                                             @RequestParam(required = false)
-                                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                                                     LocalDate startDate,
-                                                             @RequestParam(required = false)
-                                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                                                     LocalDate endDate
-        ){
-            //Call Search Booking Service
-            return null;
-        }
+//    @GetMapping("/member/{memberName}")
+//    public ResponseEntity<List<Booking>> getBookingsByMember(@PathVariable String memberName) {
+//        return ResponseEntity.ok(bookingService.getBookingsByMember(memberName));
+//    }
+//
+//    @GetMapping("/date-range")
+//    public ResponseEntity<List<Booking>> getBookingsByDateRange(
+//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+//        return ResponseEntity.ok(bookingService.getBookingsByDateRange(startDate, endDate));
+//    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Booking>> getBookingsByMemberAndDateRange(
+            @RequestParam String memberName,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+
+        List<Booking> bookings = bookingService.searchBookings(memberName, startDate, endDate);
+        return ResponseEntity.ok(bookings);
+    }
 
 }
