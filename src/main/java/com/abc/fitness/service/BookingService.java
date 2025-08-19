@@ -5,6 +5,7 @@ import com.abc.fitness.model.FitnessClass;
 import com.abc.fitness.repositories.BookingRepository;
 import com.abc.fitness.repositories.FitnessClassRepository;
 import jakarta.transaction.Transactional;
+import org.antlr.v4.runtime.atn.SemanticContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,8 +49,8 @@ public class BookingService {
             return bookingRepository.findByParticipationDateBetween(startDate, endDate);
         }
 
-        //None present
-        return bookingRepository.findAll();
+        //Not Implemented Yet
+        return List.of();
     }
 }
 

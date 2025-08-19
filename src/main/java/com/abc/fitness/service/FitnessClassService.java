@@ -28,9 +28,6 @@ public class FitnessClassService {
         return classRepository.findAll();
     }
 
-    public List<FitnessClass> getClassesByName(String name) {
-        return classRepository.findByName(name);
-    }
 
     private void validateClass(FitnessClass fitnessClass) {
         if (fitnessClass.getName() == null || fitnessClass.getName().trim().isEmpty()) {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//EXTRA FEATURE - AVAILABLE FOR EXTENSION
 @Repository
 public interface FitnessClassRepository extends JpaRepository<FitnessClass, Long> {
 
