@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
+
     List<Booking> findByMemberName (String memberName);
 
     List<Booking> findByParticipationDateBetween(LocalDate startDate, LocalDate endDate);
