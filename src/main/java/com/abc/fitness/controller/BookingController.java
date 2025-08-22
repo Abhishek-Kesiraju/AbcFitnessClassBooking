@@ -30,18 +30,6 @@ public class BookingController {
         }
     }
 
-//    @GetMapping("/member/{memberName}")
-//    public ResponseEntity<List<Booking>> getBookingsByMember(@PathVariable String memberName) {
-//        return ResponseEntity.ok(bookingService.getBookingsByMember(memberName));
-//    }
-//
-//    @GetMapping("/date-range")
-//    public ResponseEntity<List<Booking>> getBookingsByDateRange(
-//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-//        return ResponseEntity.ok(bookingService.getBookingsByDateRange(startDate, endDate));
-//    }
-
     @GetMapping("/search")
     public ResponseEntity<List<Booking>> getBookingsByMemberAndDateRange(
             @RequestParam String memberName,

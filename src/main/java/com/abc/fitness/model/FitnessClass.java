@@ -5,31 +5,43 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class FitnessClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fitnessClassId;
+
     private String name;
     
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     
+
     @JsonFormat(pattern = "HH:mm")
     private LocalTime startTime;
     
+
     private int durationMinutes;
+
     private int capacity;
 
-    public FitnessClass() {
-    }
+
 
     public FitnessClass(String name, LocalDate startDate, LocalDate endDate, LocalTime startTime, int durationMinutes, int capacity) {
         this.name = name;
@@ -40,52 +52,4 @@ public class FitnessClass {
         this.capacity = capacity;
     }
 
-    // Getters and Setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public int getDurationMinutes() {
-        return durationMinutes;
-    }
-
-    public void setDurationMinutes(int durationMinutes) {
-        this.durationMinutes = durationMinutes;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-} 
+}

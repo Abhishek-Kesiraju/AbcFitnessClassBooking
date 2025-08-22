@@ -16,9 +16,7 @@ import java.util.Map;
 @RequestMapping("/api/classes")
 public class FitnessClassController {
 
-    @Autowired
     public FitnessClassService fitnessClassService;
-
 
     @PostMapping
     public ResponseEntity<?> createClass(@RequestBody FitnessClass fitnessClass) {
@@ -41,9 +39,4 @@ public class FitnessClassController {
         return ResponseEntity.ok(fitnessClassService.getAllClasses());
     }
 
-	/*
-	 * @GetMapping("/search") public ResponseEntity<List<FitnessClass>>
-	 * getClassesByName(@RequestParam String name) { return
-	 * ResponseEntity.ok(classService.getClassesByName(name)); }
-	 */
 } 
