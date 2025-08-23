@@ -40,16 +40,4 @@ public class FitnessClass {
     private int durationMinutes;
 
     private int capacity;
-
-
-
-    public FitnessClass(String name, LocalDate startDate, LocalDate endDate, LocalTime startTime, int durationMinutes, int capacity) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startTime = startTime;
-        this.durationMinutes = durationMinutes;
-        this.capacity = capacity;
-    }
-
 }
