@@ -16,7 +16,11 @@ import java.util.Map;
 @RequestMapping("/api/classes")
 public class FitnessClassController {
 
-    public FitnessClassService fitnessClassService;
+    private FitnessClassService fitnessClassService;
+
+    public FitnessClassController(FitnessClassService fitnessClassService) {
+        this.fitnessClassService = fitnessClassService;
+    }
 
     @PostMapping
     public ResponseEntity<?> createClass(@RequestBody FitnessClass fitnessClass) {

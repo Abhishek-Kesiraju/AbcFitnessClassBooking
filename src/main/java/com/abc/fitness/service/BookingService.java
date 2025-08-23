@@ -5,31 +5,47 @@ import com.abc.fitness.model.FitnessClass;
 import com.abc.fitness.repositories.BookingRepository;
 import com.abc.fitness.repositories.FitnessClassRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.JdbcConnectionDetails;
 import org.springframework.stereotype.Service;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @Service
 public class BookingService {
 
-    private  BookingRepository bookingRepository;
-    private  FitnessClassRepository classRepository;
 
-    public BookingService(BookingRepository bookingRepository){
+    private final BookingRepository bookingRepository;
+
+    private final FitnessClassRepository fitnessClassRepository;
+
+    public BookingService(BookingRepository bookingRepository, FitnessClassRepository fitnessClassRepository) {
             this.bookingRepository = bookingRepository;
+            this.fitnessClassRepository = fitnessClassRepository;
     }
 
     @Transactional
     public Booking createBooking(Booking booking) {
 
-        //Add code to fetch FitnessClass from DB using ID
-        // ELSE through exception
-        //Then set the booking's fitness class booking.setFitnessClass(fitnessclass);
-     bookingRepository.save(booking);
+        validateBooking(booking); // check if a fitness class is present to book it
+        bookingRepository.save(booking);
 
      return booking;
+    }
+
+    private void validateBooking(Booking booking) {
+
+        Long fitnessClassId   = booking.getFitnessClass().getFitnessClassId();
+        boolean exists = fitnessClassRepository.existsById(fitnessClassId);
+        if (!exists) {
+            throw new IllegalArgumentException("There exists no such FitnessClass " + fitnessClassId);
+        }
     }
 
     public List<Booking> searchBookings(String memberName, LocalDate startDate, LocalDate endDate) {
@@ -47,7 +63,6 @@ public class BookingService {
         if(memberName == null && startDate != null && endDate != null){
             return bookingRepository.findByParticipationDateBetween(startDate, endDate);
         }
-
         //None present
         return bookingRepository.findAll();
     }
