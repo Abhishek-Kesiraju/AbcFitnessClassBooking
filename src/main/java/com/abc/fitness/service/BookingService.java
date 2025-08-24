@@ -1,5 +1,6 @@
 package com.abc.fitness.service;
 
+import com.abc.fitness.exception.ResourceNotFoundException;
 import com.abc.fitness.model.Booking;
 import com.abc.fitness.model.FitnessClass;
 import com.abc.fitness.repositories.BookingRepository;
@@ -42,10 +43,11 @@ public class BookingService {
     private void validateBooking(Booking booking) {
 
         Long fitnessClassId   = booking.getFitnessClass().getFitnessClassId();
-        boolean exists = fitnessClassRepository.existsById(fitnessClassId);
-        if (!exists) {
-            throw new IllegalArgumentException("There exists no such FitnessClass " + fitnessClassId);
-        }
+
+            boolean exists = fitnessClassRepository.existsById(fitnessClassId);
+            if (!exists) {
+                throw new ResourceNotFoundException("Fitness class not found");
+            }
     }
 
     public List<Booking> searchBookings(String memberName, LocalDate startDate, LocalDate endDate) {
