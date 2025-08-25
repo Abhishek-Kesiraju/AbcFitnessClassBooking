@@ -57,5 +57,20 @@ public class FitnessClassService {
         if (fitnessClass.getEndDate().isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("End date must be in the future");
         }
+
+        if(classAlreadyExistsinGivenDates()){
+            throw new IllegalArgumentException("There is already a class being hosted on the booking date");
+        }
+
+
     }
+
+    private boolean classAlreadyExistsinGivenDates() {
+
+        // Check In DB if start date to end date if there is already a class on that date
+        return false;
+
+    }
+
+
 } 

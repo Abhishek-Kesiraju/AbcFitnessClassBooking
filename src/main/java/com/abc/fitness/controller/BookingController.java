@@ -15,7 +15,6 @@ import java.util.List;
 public class BookingController {
     private final BookingService bookingService;
 
-    @Autowired
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
