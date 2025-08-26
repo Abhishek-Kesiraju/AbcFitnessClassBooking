@@ -13,5 +13,4 @@ import java.util.stream.Collectors;
 public interface FitnessClassRepository extends JpaRepository<FitnessClass, Long> {
 
     List<FitnessClass> findByName(String name);
-    List<FitnessClass> findIfAClassAlreadyExistsByStartDateAndEndDate(LocalDate startDate, LocalDate endDate);
 } 
