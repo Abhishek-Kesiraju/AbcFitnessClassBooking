@@ -29,14 +29,4 @@ public class BookingController {
         }
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Booking>> getBookingsByMemberAndDateRange(
-            @RequestParam String memberName,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-
-        List<Booking> bookings = bookingService.searchBookings(memberName, startDate, endDate);
-        return ResponseEntity.ok(bookings);
-    }
-
 }

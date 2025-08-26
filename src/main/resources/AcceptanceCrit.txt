@@ -1,0 +1,31 @@
+Story 1
+CLASS API
+- Capacity must atleast be 1 - Done
+- End Date must be in Future - Done
+
+Story 2
+BOOK API
+- Able to create a booking for an available class - Done
+- New booking should not cause a class to exceed capacity - Check
+- Member should be able to book any Classes for same day and same time
+- Member should not be able to book same class same time more than ONCE - TO BE DONE
+
+Story 3
+SEARCH BOOKINGS API
+- Search the bookings done by members
+- Search by Member
+- Search by Date Range
+- Search by Member and date range
+
+NON FUNCTIONAL REQUIREMENTS
+- SDS Document - Plant UML
+- ABILITY TO CHECK IN - In memory DB
+- Junits and Mockito (May be scan with SonarQube to achieve 100% test coverage)
+- Loggers with Info, Debug & Error
+- Custom Exception Handling
+- Custom OAuth Validaton in Header (just with test server)
+- Open API Spec Document
+
+Future Improvements:
+Dockerize app - use SQL
+UI using React/Angular to Hit the API
