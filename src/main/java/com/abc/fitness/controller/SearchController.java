@@ -23,7 +23,7 @@ public class SearchController {
     }
 
 
-    @GetMapping("/search")
+    @GetMapping("/bookings")
     public ResponseEntity<List<Booking>> getBookingsByMemberAndDateRange(
             @RequestParam(name = "memberName",  required = false) String memberName,
             @RequestParam(name = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
