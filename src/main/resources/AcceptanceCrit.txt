@@ -18,14 +18,16 @@ SEARCH BOOKINGS API
 - Search by Member and date range
 
 NON FUNCTIONAL REQUIREMENTS
+- Open API Spec Document
 - SDS Document - Plant UML
 - ABILITY TO CHECK IN - In memory DB
 - Junits and Mockito (May be scan with SonarQube to achieve 100% test coverage)
-- Loggers with Info, Debug & Error
+- Loggers with Info, Debug & Error (Setup logging)
 - Custom Exception Handling
-- Custom OAuth Validaton in Header (just with test server)
-- Open API Spec Document
+- Custom OAuth Validaton in Header for every request being hit by Frontend / Postman
+
 
 Future Improvements:
-Dockerize app - use SQL
+use SQL DB of choice and persist all data
+Dockerize app
 UI using React/Angular to Hit the API

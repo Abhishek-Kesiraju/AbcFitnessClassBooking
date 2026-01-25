@@ -1,7 +1,17 @@
 #Fitness Booking App UML - Component Diagram
 
 ```plantuml
-package "FitnessApp"{
+
+package "Front-end"{
+
+
+    
+
+
+
+}
+
+package "Fitness-API"{
 
 
     package "Service Layer"{
@@ -18,9 +28,5 @@ package "FitnessApp"{
 
 
 }
-
-
-
-
 
 ```

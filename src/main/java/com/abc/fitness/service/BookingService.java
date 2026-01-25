@@ -48,6 +48,10 @@ public class BookingService {
             if (!exists) {
                 throw new ResourceNotFoundException("Fitness class not found");
             }
+
+            // Validate if the participation date is in the class's availability
+
+
     }
 
     public List<Booking> searchBookings(String memberName, LocalDate startDate, LocalDate endDate) {
